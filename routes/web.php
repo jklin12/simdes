@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\DataSuratController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RefJenisSuratController;
+use App\Http\Controllers\RefKolomSuratController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +28,8 @@ Route::post('/doLogin', [AuthController::class, 'doLogin'])->name('doLogin');
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/logout', [AuthController::class, 'doLogout'])->name('logout');
+    Route::resource('/data_surat', DataSuratController::class);
     Route::resource('/penduduk', DataPendudukController::class);
+    Route::resource('/ref_jenis_surat', RefJenisSuratController::class);
+    Route::resource('/ref_kolom_surat', RefKolomSuratController::class);
 });

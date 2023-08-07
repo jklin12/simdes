@@ -54,13 +54,14 @@ class DataPendudukController extends Controller
             'tanggal_lahir' => 'required|date',
             'kewarganegaraan' => 'required|string',
             'agama' => 'required|string',
+            'status_perkawinan' => 'required|string',
             'pekerjaan' => 'required|string',
             'alamat' => 'required|string',
         ]);
 
         DataPenduduk::create($request->all());
 
-        return redirect()->route('penduduk.index')->withSuccess('Tambah Data Penduduk Berhasil');;
+        return redirect()->route('penduduk.index')->withSuccess('Tambah Data Penduduk Berhasil');
     }
 
     /**
@@ -69,9 +70,10 @@ class DataPendudukController extends Controller
      * @param  \App\Models\DataPenduduk  $dataPenduduk
      * @return \Illuminate\Http\Response
      */
-    public function show(DataPenduduk $dataPenduduk)
+    public function show($nik)
     {
-        //
+        $dataPenduduk = DataPenduduk::find($nik);
+        return response()->json($dataPenduduk);
     }
 
     /**
@@ -80,9 +82,15 @@ class DataPendudukController extends Controller
      * @param  \App\Models\DataPenduduk  $dataPenduduk
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataPenduduk $dataPenduduk)
+    public function edit($nik)
     {
-        //
+        $dataPenduduk = DataPenduduk::find($nik);
+        //dd($dataPenduduk->toArray());
+        $penduduk = new DataPenduduk();
+        $formBuilder = new FormBuilder($penduduk);
+        $form = $formBuilder->formUpdate(route('penduduk.update', $dataPenduduk->nik), 'PUT', $dataPenduduk->toArray());
+        //dd($form);
+        return view('pages.penduduk.edit', compact('form'));
     }
 
     /**
@@ -92,9 +100,26 @@ class DataPendudukController extends Controller
      * @param  \App\Models\DataPenduduk  $dataPenduduk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataPenduduk $dataPenduduk)
+    public function update(Request $request, $nik)
     {
-        //
+        $dataPenduduk = DataPenduduk::find($nik);
+        //dd($dataPenduduk);
+        $this->validate($request, [
+            'nik' => 'required|integer',
+            'nama' => 'required|string',
+            'jenis_kelamin' => 'required|string',
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'kewarganegaraan' => 'required|string',
+            'agama' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'alamat' => 'required|string',
+            'status_perkawinan' => 'required|string',
+        ]);
+
+        $dataPenduduk->update($request->all());
+
+        return redirect()->route('penduduk.index')->withSuccess('Update Data Penduduk Berhasil');;
     }
 
     /**

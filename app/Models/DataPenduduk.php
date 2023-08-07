@@ -8,10 +8,10 @@ use App\Traits\CreatedUpdatedBy;
 
 class DataPenduduk extends Model
 {
-    use HasFactory,CreatedUpdatedBy;
+    use HasFactory, CreatedUpdatedBy;
 
     protected $primaryKey = 'nik';
-    protected $fillable = ['nik','nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'kewarganegaraan', 'agama', 'pekerjaan', 'alamat'];
+    protected $fillable = ['nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'kewarganegaraan', 'agama', 'pekerjaan', 'alamat','status_perkawinan'];
 
     public function getFieldAttribute()
     {
@@ -69,7 +69,7 @@ class DataPenduduk extends Model
                 'filter_label_class' => '',
                 'filter_form_class' => '',
                 'filter_value' => '',
-                'keyvaldata' => ['Laki-laki','Perempuan'],
+                'keyvaldata' => ['Laki-laki' => 'Laki-laki', 'Perempuan' => 'Perempuan'],
                 'kolom' => 1,
                 'sort' => 1,
             ],
@@ -126,7 +126,7 @@ class DataPenduduk extends Model
                 'filter_label_class' => '',
                 'filter_form_class' => '',
                 'filter_value' => '',
-                'keyvaldata' => ['WNI','WNA'],
+                'keyvaldata' => ['WNI' => 'WNI', 'WNA' => 'WNA'],
                 'kolom' => 1,
                 'sort' => 1,
             ],
@@ -145,7 +145,26 @@ class DataPenduduk extends Model
                 'filter_label_class' => '',
                 'filter_form_class' => '',
                 'filter_value' => '',
-                'keyvaldata' => ['Islam','Kristen','Katolik','Budha','Hindu','Konghuchu'],
+                'keyvaldata' => ['Islam' => 'Islam', 'Kristen' => 'Kristen', 'Katolik' => 'Katolik', 'Budha' => 'Budha', 'Hindu' => 'Hindu', 'Konghuchu' => 'Konghuchu'],
+                'kolom' => 1,
+                'sort' => 1,
+            ],
+            'status_perkawinan' => [
+                'table' => 1,
+                'hidecolom' => 0,
+                'label' => 'Status Perkawinan',
+                'form' => 1,
+                'form_label' => 'Status Perkawinan',
+                'form_type' => 'select',
+                'form_required' => 1,
+                'filter' => 1,
+                'filter_table' => '',
+                'filter_label' => 'Status Perkawinan',
+                'filter_type' => 'select',
+                'filter_label_class' => '',
+                'filter_form_class' => '',
+                'filter_value' => '',
+                'keyvaldata' => ['Kawin' => 'Kawin', 'Belum Kawin' => 'Belum Kawin'],
                 'kolom' => 1,
                 'sort' => 1,
             ],
@@ -187,7 +206,7 @@ class DataPenduduk extends Model
                 'kolom' => 1,
                 'sort' => 1,
             ],
-            
+
         ];
     }
 }
