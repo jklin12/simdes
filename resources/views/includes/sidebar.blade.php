@@ -27,11 +27,11 @@
         <div id="collapse-surat" class="collapse" aria-labelledby="headingsurat" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 
-                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','?jenis=2')}}">Keterangan Belum Menikah</a>
-                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','?jenis=4')}}">Keterangan Tidak Mampu</a>
-                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','?jenis=5')}}">Usaha</a>
-                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','?jenis=6')}}">Beda Identitas</a>
-                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','?jenis=7')}}">Keterangan Kematian</a>
+                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=2')}}">Keterangan Belum Menikah</a>
+                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=4')}}">Keterangan Tidak Mampu</a>
+                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=5')}}">Usaha</a>
+                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=6')}}">Beda Identitas</a>
+                <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=7')}}">Keterangan Kematian</a>
             </div>
         </div>
     </li>
