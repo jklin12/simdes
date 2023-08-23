@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 23, 2023 at 02:29 AM
+-- Generation Time: Aug 23, 2023 at 09:00 AM
 -- Server version: 8.0.33
--- PHP Version: 8.2.8
+-- PHP Version: 7.3.29-to-be-removed-in-future-macOS
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `data_isi_surats` (
   `id_isi_surat` bigint UNSIGNED NOT NULL,
   `id_surat` int NOT NULL,
   `id_kolom_surat` int NOT NULL,
-  `isi_kolom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `isi_kolom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -203,7 +203,52 @@ INSERT INTO `data_isi_surats` (`id_isi_surat`, `id_surat`, `id_kolom_surat`, `is
 (162, 13, 33, 'Jualan Jajan'),
 (163, 13, 34, '20 Agustus 2023'),
 (164, 13, 35, 'JL XYC 29'),
-(165, 13, 36, 'Pengajuan kredit Usaha');
+(165, 13, 36, 'Pengajuan kredit Usaha'),
+(166, 15, 1, 'Faris Aizy'),
+(167, 15, 2, '35200618012938'),
+(168, 15, 3, 'Laki-laki'),
+(169, 15, 4, 'Magetan'),
+(170, 15, 5, '1998-07-23'),
+(171, 15, 6, 'WNI'),
+(172, 15, 7, 'Islam'),
+(173, 15, 8, 'Swasta'),
+(174, 15, 9, 'Jl jaksa agung s no 27B'),
+(175, 16, 1, 'Faris Aizy'),
+(176, 16, 2, '35200618012938'),
+(177, 16, 3, 'Laki-laki'),
+(178, 16, 4, 'Magetan'),
+(179, 16, 5, '1998-07-23'),
+(180, 16, 6, 'WNI'),
+(181, 16, 7, 'Islam'),
+(182, 16, 8, 'Swasta'),
+(183, 16, 9, 'Jl jaksa agung s no 27B'),
+(184, 17, 1, 'Faris Aizy'),
+(185, 17, 2, '35200618012938'),
+(186, 17, 3, 'Laki-laki'),
+(187, 17, 4, 'Magetan'),
+(188, 17, 5, '1998-07-23'),
+(189, 17, 6, 'WNI'),
+(190, 17, 7, 'Islam'),
+(191, 17, 8, 'Swasta'),
+(192, 17, 9, 'Jl jaksa agung s no 27B'),
+(193, 18, 1, 'Faris Aizy'),
+(194, 18, 2, '35200618012938'),
+(195, 18, 3, 'Laki-laki'),
+(196, 18, 4, 'Magetan'),
+(197, 18, 5, '1998-07-23'),
+(198, 18, 6, 'WNI'),
+(199, 18, 7, 'Islam'),
+(200, 18, 8, 'Swasta'),
+(201, 18, 9, 'Jl jaksa agung s no 27B'),
+(202, 19, 1, 'Anggi Aviani'),
+(203, 19, 2, '35200618012939'),
+(204, 19, 3, 'Perempuan'),
+(205, 19, 4, 'Yogyakarta'),
+(206, 19, 5, '1999-07-14'),
+(207, 19, 6, 'WNA'),
+(208, 19, 7, 'Islam'),
+(209, 19, 8, 'Pelajar'),
+(210, 19, 9, 'JL XYZ NO 12');
 
 -- --------------------------------------------------------
 
@@ -213,15 +258,15 @@ INSERT INTO `data_isi_surats` (`id_isi_surat`, `id_surat`, `id_kolom_surat`, `is
 
 CREATE TABLE `data_penduduks` (
   `nik` bigint UNSIGNED NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jenis_kelamin` enum('Laki-laki','Perempuan') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tempat_lahir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_kelamin` enum('Laki-laki','Perempuan') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tempat_lahir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `kewarganegaraan` enum('WNI','WNA') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `agama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pekerjaan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kewarganegaraan` enum('WNI','WNA') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `agama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pekerjaan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_perkawinan` varchar(99) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` int NOT NULL,
   `updated_by` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -245,7 +290,7 @@ INSERT INTO `data_penduduks` (`nik`, `nama`, `jenis_kelamin`, `tempat_lahir`, `t
 CREATE TABLE `data_surats` (
   `id_surat` bigint UNSIGNED NOT NULL,
   `id_jenis_surat` int NOT NULL,
-  `nomor_surat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nomor_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_terbit` date NOT NULL,
   `created_by` int NOT NULL,
   `updated_by` int NOT NULL,
@@ -258,18 +303,16 @@ CREATE TABLE `data_surats` (
 --
 
 INSERT INTO `data_surats` (`id_surat`, `id_jenis_surat`, `nomor_surat`, `tanggal_terbit`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 2, '0123/01/2023', '2023-07-22', 1, 1, '2023-07-22 11:33:44', '2023-07-22 11:33:44'),
 (2, 4, '04.22.00/01/2023', '2023-07-25', 1, 1, '2023-07-25 05:56:46', '2023-07-25 05:56:46'),
 (3, 5, '510/01/2023', '2023-07-25', 1, 1, '2023-07-25 06:18:45', '2023-07-25 06:18:45'),
 (4, 5, '510/01/2023', '2023-07-25', 1, 1, '2023-07-25 06:21:02', '2023-07-25 06:21:02'),
 (6, 6, '123/01/2023', '2023-07-25', 1, 1, '2023-07-25 06:48:13', '2023-07-25 06:48:13'),
 (7, 7, '321/01/2023', '2023-07-25', 1, 1, '2023-07-25 07:07:27', '2023-07-25 07:07:27'),
 (8, 5, '510/01/2023', '2023-07-31', 1, 1, '2023-07-31 09:11:22', '2023-07-31 09:11:22'),
-(9, 2, '0123/02/2023', '2023-08-01', 1, 1, '2023-08-01 01:51:28', '2023-08-01 01:51:28'),
 (10, 7, '321/02/2023', '2023-08-01', 1, 1, '2023-08-01 02:18:49', '2023-08-01 02:18:49'),
-(11, 2, '0123/03/2023', '2023-08-08', 1, 1, '2023-08-08 07:07:07', '2023-08-08 07:07:07'),
-(12, 2, '546/04/2023', '2023-08-08', 1, 1, '2023-08-08 07:08:29', '2023-08-08 07:08:29'),
-(13, 5, '510/02/2023', '2023-08-08', 1, 1, '2023-08-08 07:10:31', '2023-08-08 07:10:31');
+(13, 5, '510/02/2023', '2023-08-23', 1, 1, '2023-08-08 07:10:31', '2023-08-23 01:59:49'),
+(18, 2, '1239812039', '2023-08-23', 1, 1, '2023-08-23 00:28:06', '2023-08-23 00:28:06'),
+(19, 2, '81838912839', '2023-08-23', 1, 1, '2023-08-23 00:28:22', '2023-08-23 00:28:22');
 
 -- --------------------------------------------------------
 
@@ -279,11 +322,11 @@ INSERT INTO `data_surats` (`id_surat`, `id_jenis_surat`, `nomor_surat`, `tanggal
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -295,7 +338,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -312,7 +355,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2023_07_18_041609_create_ref_jenis_surats_table', 1),
 (7, '2023_07_18_041630_create_ref_kolom_surats_table', 1),
 (8, '2023_07_18_041649_create_data_surats_table', 1),
-(9, '2023_07_18_041713_create_data_isi_surats_table', 1);
+(9, '2023_07_18_041713_create_data_isi_surats_table', 1),
+(10, '2023_08_23_080406_create_surat_masuks_table', 2);
 
 -- --------------------------------------------------------
 
@@ -321,8 +365,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -334,11 +378,11 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -352,10 +396,10 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `ref_jenis_surats` (
   `id_jenis_surat` bigint UNSIGNED NOT NULL,
-  `nama_jenis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kode_surat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_jenis` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nomor_surat` int DEFAULT NULL,
-  `keterangan_surat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `keterangan_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -363,7 +407,7 @@ CREATE TABLE `ref_jenis_surats` (
 --
 
 INSERT INTO `ref_jenis_surats` (`id_jenis_surat`, `nama_jenis`, `kode_surat`, `nomor_surat`, `keterangan_surat`) VALUES
-(2, 'Surat Keterangan Belum Menikah', '546', 4, 'Untuk Syarat Menikah'),
+(2, 'Surat Keterangan Belum Menikah', '546', 12, 'Untuk Syarat Menikah'),
 (4, 'Surat Keterangan Tidak Mampu', '04.22.00', 1, 'Untuk keperluan bantuan'),
 (5, 'Surat Keterangan usaha', '510', 2, 'Untuk Pembuatan Usaha'),
 (6, 'Surat Keterangan Beda Identitas', '123', 1, '--'),
@@ -378,8 +422,8 @@ INSERT INTO `ref_jenis_surats` (`id_jenis_surat`, `nama_jenis`, `kode_surat`, `n
 CREATE TABLE `ref_kolom_surats` (
   `id_kolom_surat` bigint UNSIGNED NOT NULL,
   `id_jenis_surat` int NOT NULL,
-  `nama_kolom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `judul_kolom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `nama_kolom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `judul_kolom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -453,17 +497,42 @@ INSERT INTO `ref_kolom_surats` (`id_kolom_surat`, `id_jenis_surat`, `nama_kolom`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `surat_masuks`
+--
+
+CREATE TABLE `surat_masuks` (
+  `id_surat` bigint UNSIGNED NOT NULL,
+  `nomor_surat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dari_surat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kepada_surat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `judul_surat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_surat` text COLLATE utf8mb4_unicode_ci,
+  `tgl_surat` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `surat_masuks`
+--
+
+INSERT INTO `surat_masuks` (`id_surat`, `nomor_surat`, `dari_surat`, `kepada_surat`, `judul_surat`, `file_surat`, `tgl_surat`, `created_at`, `updated_at`) VALUES
+(1, '1239812039', 'Ormas A edit', 'Dana Bantuan', 'LoremIpsum', '/storage/uploads/1692779907_!Y73qty!E7GG(9f5US3f.png', '2023-08-18', '2023-08-23 01:38:27', '2023-08-23 01:52:11');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` enum('Ya','Tidak') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_admin` enum('Ya','Tidak') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -537,6 +606,12 @@ ALTER TABLE `ref_kolom_surats`
   ADD PRIMARY KEY (`id_kolom_surat`);
 
 --
+-- Indexes for table `surat_masuks`
+--
+ALTER TABLE `surat_masuks`
+  ADD PRIMARY KEY (`id_surat`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -551,7 +626,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `data_isi_surats`
 --
 ALTER TABLE `data_isi_surats`
-  MODIFY `id_isi_surat` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id_isi_surat` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
 
 --
 -- AUTO_INCREMENT for table `data_penduduks`
@@ -563,7 +638,7 @@ ALTER TABLE `data_penduduks`
 -- AUTO_INCREMENT for table `data_surats`
 --
 ALTER TABLE `data_surats`
-  MODIFY `id_surat` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_surat` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -575,7 +650,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -594,6 +669,12 @@ ALTER TABLE `ref_jenis_surats`
 --
 ALTER TABLE `ref_kolom_surats`
   MODIFY `id_kolom_surat` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT for table `surat_masuks`
+--
+ALTER TABLE `surat_masuks`
+  MODIFY `id_surat` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

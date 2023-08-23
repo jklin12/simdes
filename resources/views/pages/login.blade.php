@@ -33,12 +33,12 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url({{URL::asset('assets/img/ump.png') }});background-size: auto;background-repeat: no-repeat;"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url({{URL::asset('assets/img/logo_login.png') }});background-size: contain;background-repeat: no-repeat;scale:0.8"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h5 text-gray-900">{{ ucfirst(config('site.name'))}}</h1>
-                                        <p class="text-gray-900 mb-4">{{ config('site.institution')}}</p>
+                                        <p class="text-gray-900 mb-4">{{ config('site.institution_short').', '.config('site.institution')}}</p>
                                     </div>
                                     @if (count($errors) > 0)
                                     <div class="alert alert-danger">

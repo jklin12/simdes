@@ -19,10 +19,15 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <li class="nav-item" id="nav-surat-masuk">
+        <a class="nav-link" href="{{ route('surat_masuk.index')}}">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Surat Masuk</span></a>
+    </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-surat" aria-expanded="true" aria-controls="collapse-surat">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Data Surat</span>
+            <span>Data Surat Keluar</span>
         </a>
         <div id="collapse-surat" class="collapse" aria-labelledby="headingsurat" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">

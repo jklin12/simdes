@@ -6,6 +6,7 @@ use App\Http\Controllers\DataSuratController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RefJenisSuratController;
 use App\Http\Controllers\RefKolomSuratController;
+use App\Http\Controllers\SuratMasukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/logout', [AuthController::class, 'doLogout'])->name('logout');
     Route::resource('/data_surat', DataSuratController::class);
+    Route::resource('/surat_masuk', SuratMasukController::class);
     Route::resource('/penduduk', DataPendudukController::class);
     Route::resource('/ref_jenis_surat', RefJenisSuratController::class);
     Route::resource('/ref_kolom_surat', RefKolomSuratController::class);

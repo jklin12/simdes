@@ -23,36 +23,20 @@
     @endif
     <div class="card mb-4">
         <div class="card-body">
-            <form action="{{ route('data_surat.store')}}" method="post">
+            <form action="{{ route('data_surat.update',$dataSurat->id_surat)}}" method="post">
                 @csrf
-                <div class="form-group">
-                    <label for="input_id_jenis_surat">Jenis Surat</label>
-                    <select class="form-control" id="input_id_jenis_surat" name="id_jenis_surat" readonly>
-                        <option value="{{ $jenisSurat->id_jenis_surat}}">{{ $jenisSurat->nama_jenis}}</option>
-                    </select>
-                </div>
+                @method('PUT')
 
-                @if($dataPenduduk)
+                <input type="hidden" name="id_jenis_surat" value="{{$dataSurat->id_jenis_surat}}">
                 <div class="form-group">
-                    <label for="input_data_penduduk">Pilih Penduduk</label>
-                    <select class="form-control select2" id="input_data_penduduk">
-                        <option value="">--------</option>
-                        @foreach($dataPenduduk->toArray() as $key => $value)
-                        <option value="{{ $value['nik']}}" @php foreach($value as $kv=> $val){ echo 'data-'.$kv.'="'.$val.'"'; } @endphp>{{ $value['nama']}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @endIf
-
-                <div class="form-group">
-                    <label for="input_tgl_pulang">Nomor Surat</label>
-                    <input type="text" class="form-control" id="input_nomor_surat" placeholder="Masukan Nomor Surat" name="nomor_surat" value="">
+                    <label for="input_tgl_pulang">Nomor Surat </label>
+                    <input type="text" class="form-control" id="input_nomor_surat" placeholder="Masukan Nomor Surat" name="nomor_surat" value="{{$dataSurat->nomor_surat}}">
                 </div>
 
                 @foreach($kolomSurat as $key=> $value)
                 <div class="form-group">
                     <label for="input_tgl_pulang">{{$value->judul_kolom}}</label>
-                    <input type="text" class="form-control" id="input_{{$value->nama_kolom}}" placeholder="Masukan {{$value->judul_kolom}}" name="data_kolom[{{$value->id_kolom_surat}}]" value="{{ old($value->nama_kolom)}}">
+                    <input type="text" class="form-control" id="input_{{$value->nama_kolom}}" placeholder="Masukan {{$value->judul_kolom}}" name="data_kolom[{{$value->id_kolom_surat}}]" value="{{ $dataSurat->isiSurat->where('id_kolom_surat', $value->id_kolom_surat)->first()->isi_kolom }}">
                 </div>
                 @endforeach
              

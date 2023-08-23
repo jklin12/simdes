@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'Sistem Adminsitrasi Surat Menyurat Terpadu Desa Purwodadi Berbasis Website',
+    'name' => 'Sistem Adminsitrasi Surat Menyurat Terpadu Desa Purworejo Berbasis Website',
     'name_sort' => 'SIMDES',
-    'institution' => 'Universitas Muhammadiyah Purworejo',
-    'institution_short' => 'UMP',
+    'institution' => 'Desa Purwodadi',
+    'institution_short' => 'Kecamatan Purwodadi',
 ];

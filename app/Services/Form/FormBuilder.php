@@ -39,10 +39,12 @@ class FormBuilder
 
                 if ($value->jenisSurat) {
                     foreach ($value->jenisSurat->kolomSurat as $kkolom => $vkolom) {
-                        //dd($vkolom,$value);
+
 
                         if ($vkolom->nama_kolom == 'nik') {
                             //dd();
+                            //dd($value->isiSurat->where('id_kolom_surat', $vkolom->id_kolom_surat)->first()->isi_kolom);
+
                             $table .= '<td>' . $value->isiSurat->where('id_kolom_surat', $vkolom->id_kolom_surat)->first()->isi_kolom . '</td>';
                         }
                         if ($vkolom->nama_kolom == 'nama') {
@@ -59,6 +61,8 @@ class FormBuilder
                         } else {
                             $table .= '<td></td>';
                         }
+                    } else  if ($vfield['form_type'] == 'file') {
+                        $table .= '<td><a href="' . $value[$kfield] . '" class="btn btn-info btn-sm" target="_blank" ><i class="fa fa-download"></i></a></td>';
                     } else {
                         $table .= '<td>' . $value[$kfield] . '</td>';
                     }
@@ -66,13 +70,18 @@ class FormBuilder
                 $i++;
                 if ($detail == 1) {
                     $table .= '<td class="text-center">';
-                    $table .= '<a href="' . route($routeDetail, $value[$this->model->getKeyName()]) . '" class="btn btn-info btn-sm delete-btn" >';
-                    $table .= '<i class="fa fa-eye"></i>';
+                    $table .= '<a href="' . route($routeDetail, $value[$this->model->getKeyName()]) . '"  class="btn btn-info btn-sm" >';
+                    $table .= '<i class="fa fa-download"></i>';
                     $table .= '</a>';
                     $table .= '</td>';
                 }
+                //dd($value);
                 $table .= '<td class="text-center">';
-                $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '" class="btn btn-success btn-sm">';
+                if ($detail == 1) {
+                    $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '?jenis=' . $value->id_jenis_surat . '" class="btn btn-success btn-sm">';
+                } else {
+                    $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '" class="btn btn-success btn-sm">';
+                }
                 $table .= '<i class="fa fa-edit"></i>';
                 $table .= '</a>';
                 $table .= '</td>';

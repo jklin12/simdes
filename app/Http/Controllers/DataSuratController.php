@@ -74,12 +74,13 @@ class DataSuratController extends Controller
         $nomorSurat = sprintf('%02d', $nomorBaru);
 
         $jenisSurat->nomor_surat = $nomorBaru;
-        $jenisSurat->save(); 
+        $jenisSurat->save();
         //dd($nomorSurat);
 
-        
+
         $postSurat['id_jenis_surat'] = $request->id_jenis_surat;
-        $postSurat['nomor_surat'] = $jenisSurat->kode_surat . '/' . $nomorSurat  . '/' . date('Y');
+        //$postSurat['nomor_surat'] = $jenisSurat->kode_surat . '/' . $nomorSurat  . '/' . date('Y');
+        $postSurat['nomor_surat'] = $request->nomor_surat;
         $postSurat['tanggal_terbit'] = date('Y-m-d');
         //dd($postSurat);
         $storeSurat = DataSurat::create($postSurat);
@@ -136,9 +137,21 @@ class DataSuratController extends Controller
      * @param  \App\Models\DataSurat  $dataSurat
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataSurat $dataSurat)
+    public function edit($idSurat, Request $request)
     {
-        //
+        $dataSurat = DataSurat::find($idSurat);
+        //dd($dataSurat->isiSurat);
+        $jenis = $request->jenis;
+        $jenisSurat = RefJenisSurat::find($jenis);
+        $kolomSurat = RefKolomSurat::where('id_jenis_surat', $jenis)->get();
+        $title = $this->title;
+        $dataPenduduk = [];
+        if (1 == 1) {
+            $dataPenduduk = DataPenduduk::get();
+        }
+        //dd($dataSurat->nomor_surat);
+        //dd($dataPenduduk);
+        return view('pages.surat.edit', compact('title', 'jenisSurat', 'kolomSurat', 'dataPenduduk', 'dataSurat'));
     }
 
     /**
@@ -148,9 +161,31 @@ class DataSuratController extends Controller
      * @param  \App\Models\DataSurat  $dataSurat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataSurat $dataSurat)
+    public function update(Request $request, $idSurat)
     {
-        //
+
+        $this->validate($request, [
+            'id_jenis_surat' => 'integer|string',
+        ]);
+
+        //dd($request->all());
+        $dataSurat = DataSurat::find($idSurat);
+        $postSurat['id_jenis_surat'] = $request->id_jenis_surat;
+        //$postSurat['nomor_surat'] = $jenisSurat->kode_surat . '/' . $nomorSurat  . '/' . date('Y');
+        $postSurat['nomor_surat'] = $request->nomor_surat;
+        $postSurat['tanggal_terbit'] = date('Y-m-d');
+        //dd($postSurat);
+        $storeSurat = $dataSurat->update($postSurat);
+        $postKolom = [];
+        $dataIsiSurat = new DataIsiSurat();
+        foreach ($request->data_kolom as $key => $value) {
+            $dataIsiSurat->where('id_surat', $dataSurat->id_surat)
+                ->where('id_kolom_surat', $key)
+                ->update(['isi_kolom' => $value]);
+        }
+        
+
+        return redirect()->route('data_surat.index', 'jenis=' . $request->id_jenis_surat)->withSuccess('Update Data Surat Berhasil');
     }
 
     /**
@@ -162,6 +197,6 @@ class DataSuratController extends Controller
     public function destroy(DataSurat $dataSurat)
     {
         $dataSurat->delete();
-        return redirect()->back()->withSuccess('Tambah Data Surat Berhasil');
+        return redirect()->back()->withSuccess('Hapus Data Surat Berhasil');
     }
 }
