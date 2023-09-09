@@ -9,14 +9,15 @@ class SuratMasuk extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_surat';
-    protected $fillable = ['nomor_surat', 'dari_surat', 'kepada_surat','judul_surat','file_surat','tgl_surat'];
+    protected $fillable = ['nomor_surat', 'jenis_surat','dari_surat', 'kepada_surat','judul_surat','file_surat','tgl_surat'];
 
     public function getFieldAttribute()
     {
-         
-
+        $jenisSurat = [
+            "Dinas" => "Dinas",
+            "Umum" => "Umum",
+        ];
         return [
-             
             'nomor_surat' => [
                 'table' => 1,
                 'hidecolom' => 0,
@@ -36,7 +37,25 @@ class SuratMasuk extends Model
                 'kolom' => 1,
                 'sort' => 1,
             ],
-          
+            'jenis_surat' => [
+                'table' => 1,
+                'hidecolom' => 0,
+                'label' => 'Kategori Surat',
+                'form' => 1,
+                'form_label' => 'Kategori Surat',
+                'form_type' => 'select',
+                'form_required' => 1,
+                'filter' => 1,
+                'filter_table' => '',
+                'filter_label' => 'Kategori Surat',
+                'filter_type' => 'select',
+                'filter_label_class' => '',
+                'filter_form_class' => '',
+                'filter_value' => '',
+                'keyvaldata' => $jenisSurat,
+                'kolom' => 1,
+                'sort' => 1,
+            ],
             'tgl_surat' => [
                 'table' => 1,
                 'hidecolom' => 0,

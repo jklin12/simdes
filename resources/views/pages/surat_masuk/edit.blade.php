@@ -32,6 +32,13 @@
                     <label for="input_tgl_pulang">{{$value['label']}}</label>
                     @if($value['form_type'] == 'text')
                     <input type="text" class="form-control" id="input_{{$key}}" placeholder="Masukan {{$value['label']}}" name="{{$key}}" value="{{ $suratMasuk->$key}}">
+                    @elseif($value['form_type'] == 'select')
+                    <select class="form-control" id="input_{{$key}}" name="{{$key}}">
+                        <option value="">-- Pilih {{$value['label']}} --</option>
+                        @foreach($value['keyvaldata'] as $kdata => $vdata)
+                        <option value="{{$kdata}}" >{{$vdata}}</option>
+                        @endforeach
+                    </select>
                     @elseif($value['form_type'] == 'date')
                     <div class="datepicker date input-group">
                         <input type="text" class=" form-control" id="input_{{$key}}" placeholder="Masukan {{$value['label']}}" name="{{$key}}" value="{{ $suratMasuk->$key}}">
@@ -70,12 +77,13 @@
     $(document).ready(function() {
         $('.select2').select2();
 
+        $('#input_jenis_surat').val("<?= $suratMasuk->jenis_surat ?>").change()
+        
         $('.datepicker').datepicker({
             language: "es",
             autoclose: true,
             format: "yyyy-mm-dd"
         });
-        $('#collapse-surat').addClass('show')
         $('#nav-<?= $key ?>').addClass('active')
     })
 </script>

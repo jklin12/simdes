@@ -62,10 +62,12 @@ class SuratMasukController extends Controller
 
         $suratMasuk = new SuratMasuk();
         $suratMasuk->nomor_surat = $request->nomor_surat;
+        $suratMasuk->jenis_surat = $request->jenis_surat;
         $suratMasuk->tgl_surat = $request->tgl_surat;
         $suratMasuk->dari_surat = $request->dari_surat;
         $suratMasuk->kepada_surat = $request->kepada_surat;
         $suratMasuk->judul_surat = $request->judul_surat;
+        //dd($suratMasuk,$request->all());
         if ($request->hasFile('file_surat')) {
             $fileName = time().'_'.$request->file('file_surat')->getClientOriginalName();
             $filePath = $request->file('file_surat')->storeAs('uploads', $fileName, 'public');
@@ -113,6 +115,7 @@ class SuratMasukController extends Controller
             //'file_surat' => 'required',
         ]);
         $suratMasuk->nomor_surat = $request->nomor_surat;
+        $suratMasuk->jenis_surat = $request->jenis_surat;
         $suratMasuk->tgl_surat = $request->tgl_surat;
         $suratMasuk->dari_surat = $request->dari_surat;
         $suratMasuk->kepada_surat = $request->kepada_surat;
