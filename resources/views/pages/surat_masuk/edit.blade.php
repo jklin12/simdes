@@ -28,6 +28,7 @@
                 @method('PUT')
 
                 @foreach($suratMasuk->field as $key=> $value)
+                @if($value['form'])
                 <div class="form-group">
                     <label for="input_tgl_pulang">{{$value['label']}}</label>
                     @if($value['form_type'] == 'text')
@@ -55,6 +56,7 @@
                     </div>
                     @endif
                 </div>
+                @endif
                 @endforeach
 
                 <div class="d-sm-flex justify-content-center mb-2">

@@ -31,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'doLogout'])->name('logout');
     Route::resource('/data_surat', DataSuratController::class);
     Route::resource('/surat_masuk', SuratMasukController::class);
+    Route::put('/surat_masuk/{id}/tanggapi', [SuratMasukController::class,'tanggapi'])->name('surat_masuk.tanggapi');
+    Route::put('/surat_masuk/{id}/tanggapan', [SuratMasukController::class,'tanggapan'])->name('surat_masuk.tanggapan');
+    Route::put('/surat_masuk/{id}/riview', [SuratMasukController::class,'riview'])->name('surat_masuk.riview');
     Route::resource('/penduduk', DataPendudukController::class);
     Route::resource('/ref_jenis_surat', RefJenisSuratController::class);
     Route::resource('/ref_kolom_surat', RefKolomSuratController::class);

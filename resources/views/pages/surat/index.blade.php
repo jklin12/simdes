@@ -22,12 +22,15 @@
         </ul>
     </div>
     @endif
+    @if(auth()->user()->level == 9)
     <a href="{{ route('data_surat.create','jenis='.$jenis)}}" class="btn btn-primary btn-icon-split mb-2" >
         <span class="icon text-white-50">
             <i class="fas fa-plus"></i>
         </span>
         <span class="text">Tambah {{ $title }}</span>
     </a>
+    @endif
+
     <div class="card mb-4">
         <div class="card-body">
             {!! $table !!}

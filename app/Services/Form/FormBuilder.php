@@ -25,7 +25,13 @@ class FormBuilder
         foreach ($this->model->field as $key => $value) {
             $table .= '<th>' . $value['label'] . '</th>';
         }
-        $table .= '<th colspan="' . ($detail ? 3 : 2) . '" class="text-center">Action</th>';
+        if ($detail == 1) {
+            $table .= '<th   class="text-center">Download </th>';
+        }
+        if (auth()->user()->level == 9) {
+            $table .= '<th colspan="' . ( 2) . '" class="text-center">Action</th>';
+        }
+
         $table .= '</tr></thead>';
         $table .= '<tbody>';
         //dd($this->model->getFillable()[1]);
@@ -76,21 +82,23 @@ class FormBuilder
                     $table .= '</td>';
                 }
                 //dd($value);
-                $table .= '<td class="text-center">';
-                if ($detail == 1) {
-                    $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '?jenis=' . $value->id_jenis_surat . '" class="btn btn-success btn-sm">';
-                } else {
-                    $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '" class="btn btn-success btn-sm">';
-                }
-                $table .= '<i class="fa fa-edit"></i>';
-                $table .= '</a>';
-                $table .= '</td>';
+                if (auth()->user()->level == 9) {
+                    $table .= '<td class="text-center">';
+                    if ($detail == 1) {
+                        $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '?jenis=' . $value->id_jenis_surat . '" class="btn btn-success btn-sm">';
+                    } else {
+                        $table .= '<a href="' . route($routeEdit, $value[$this->model->getKeyName()]) . '" class="btn btn-success btn-sm">';
+                    }
+                    $table .= '<i class="fa fa-edit"></i>';
+                    $table .= '</a>';
+                    $table .= '</td>';
 
-                $table .= '<td class="text-center">';
-                $table .= '<a href="" class="btn btn-danger btn-sm delete-btn" data-toggle="modal" data-target="#delete-modal" data-route="' . route($routeDelete, $value[$this->model->getKeyName()]) . '" data-name="' . $value[$this->model->getFillable()[1]] . '">';
-                $table .= '<i class="fa fa-trash"></i>';
-                $table .= '</a>';
-                $table .= '</td>';
+                    $table .= '<td class="text-center">';
+                    $table .= '<a href="" class="btn btn-danger btn-sm delete-btn" data-toggle="modal" data-target="#delete-modal" data-route="' . route($routeDelete, $value[$this->model->getKeyName()]) . '" data-name="' . $value[$this->model->getFillable()[1]] . '">';
+                    $table .= '<i class="fa fa-trash"></i>';
+                    $table .= '</a>';
+                    $table .= '</td>';
+                }
 
                 $table .= '</tr>';
             }

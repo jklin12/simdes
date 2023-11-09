@@ -30,9 +30,7 @@ class SuratMasukController extends Controller
 
         $table = $formBuilder->table($surats, 0, 'table-stipped', 'surat_masuk.show', 'surat_masuk.edit', 'surat_masuk.destroy');
 
-
-
-        return view('pages.surat_masuk.index', compact('key', 'table', 'title'));
+        return view('pages.surat_masuk.index', compact('key', 'table', 'title', 'surats'));
     }
 
     /**
@@ -44,7 +42,7 @@ class SuratMasukController extends Controller
     {
         $title = $this->title;
         $suratMasuk = new SuratMasuk();
-        return view('pages.surat_masuk.create', compact('title','suratMasuk'));
+        return view('pages.surat_masuk.create', compact('title', 'suratMasuk'));
     }
 
     /**
@@ -69,12 +67,12 @@ class SuratMasukController extends Controller
         $suratMasuk->judul_surat = $request->judul_surat;
         //dd($suratMasuk,$request->all());
         if ($request->hasFile('file_surat')) {
-            $fileName = time().'_'.$request->file('file_surat')->getClientOriginalName();
+            $fileName = time() . '_' . $request->file('file_surat')->getClientOriginalName();
             $filePath = $request->file('file_surat')->storeAs('uploads', $fileName, 'public');
             $suratMasuk->file_surat = '/storage/' . $filePath;
         }
         $suratMasuk->save();
-        return redirect()->route('surat_masuk.index', )->withSuccess('Tambah Surat Masuk Berhasil');
+        return redirect()->route('surat_masuk.index',)->withSuccess('Tambah Surat Masuk Berhasil');
     }
 
     /**
@@ -98,7 +96,7 @@ class SuratMasukController extends Controller
     {
         $title = $this->title;
         //$suratMasuk = new SuratMasuk();
-        return view('pages.surat_masuk.edit', compact('title','suratMasuk'));
+        return view('pages.surat_masuk.edit', compact('title', 'suratMasuk'));
     }
 
     /**
@@ -121,14 +119,52 @@ class SuratMasukController extends Controller
         $suratMasuk->kepada_surat = $request->kepada_surat;
         $suratMasuk->judul_surat = $request->judul_surat;
         if ($request->hasFile('file_surat')) {
-            $fileName = time().'_'.$request->file('file_surat')->getClientOriginalName();
+            $fileName = time() . '_' . $request->file('file_surat')->getClientOriginalName();
             $filePath = $request->file('file_surat')->storeAs('uploads', $fileName, 'public');
             $suratMasuk->file_surat = '/storage/' . $filePath;
         }
         $suratMasuk->save();
-        return redirect()->route('surat_masuk.index', )->withSuccess('Update Surat Masuk Berhasil');
+        return redirect()->route('surat_masuk.index',)->withSuccess('Update Surat Masuk Berhasil');
     }
 
+    public function riview(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+
+        $suratMasuk = SuratMasuk::find($id);
+        
+        $suratMasuk->status = $request->status;
+        $suratMasuk->save();
+        return redirect()->route('surat_masuk.index',)->withSuccess('Update Surat Masuk Berhasil');
+    }
+    public function tanggapan(Request $request, $id)
+    {
+        $request->validate([
+            'file_tanggapan' => 'required|mimes:pdf,docx,xlsx',
+        ]);
+
+
+        $suratMasuk = SuratMasuk::find($id);
+        if ($request->hasFile('file_tanggapan')) {
+            $fileName = time() . '_' . $request->file('file_tanggapan')->getClientOriginalName();
+            $filePath = $request->file('file_tanggapan')->storeAs('uploads', $fileName, 'public');
+            $suratMasuk->file_tanggapan = '/storage/' . $filePath;
+        }
+        $suratMasuk->status = 'Riview Tanggapan';
+        $suratMasuk->save();
+        return redirect()->route('surat_masuk.index',)->withSuccess('Update Surat Masuk Berhasil');
+    }
+    public function tanggapi(Request $request, $id)
+    {
+        $suratMasuk = SuratMasuk::find($id);
+        $suratMasuk->jenis_surat = 'Umum';
+        $suratMasuk->status = 'Perlu Ditanggapi';
+        $suratMasuk->save();
+        return redirect()->route('surat_masuk.index',)->withSuccess('Update Surat Masuk Berhasil');
+    }
     /**
      * Remove the specified resource from storage.
      *

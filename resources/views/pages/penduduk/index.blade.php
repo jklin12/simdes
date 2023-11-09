@@ -13,12 +13,15 @@
         {{ session()->get('success') }}
     </div>
     @endif
+    @if(auth()->user()->level == 9)
     <a href="{{ route('penduduk.create')}}" class="btn btn-primary btn-icon-split mb-2">
         <span class="icon text-white-50">
             <i class="fas fa-plus"></i>
         </span>
         <span class="text">Tambah Data Penduduk</span>
     </a>
+    @endif
+
     <div class="card mb-4">
         <div class="card-body">
             {!! $table !!}

@@ -31,7 +31,7 @@
         </a>
         <div id="collapse-surat" class="collapse" aria-labelledby="headingsurat" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                
+
                 <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=2')}}">Keterangan Belum Menikah</a>
                 <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=4')}}">Keterangan Tidak Mampu</a>
                 <a class="collapse-item" id="nav-" href="{{ route('data_surat.index','jenis=5')}}">Usaha</a>
@@ -45,6 +45,8 @@
             <i class="fas fa-fw fa-users"></i>
             <span>Data Penduduk</span></a>
     </li>
+    @if(auth()->user()->level == 9)
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-setting" aria-expanded="true" aria-controls="collapse-setting">
             <i class="fas fa-fw fa-cog"></i>
@@ -52,13 +54,13 @@
         </a>
         <div id="collapse-setting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                
+
                 <a class="collapse-item" id="nav-ref_jenis_surat" href="{{ route('ref_jenis_surat.index')}}">Jenis Surat</a>
                 <a class="collapse-item" id="nav-ref_kolom_surat" href="{{ route('ref_kolom_surat.index')}}">Kolom Surat</a>
             </div>
         </div>
     </li>
-
+    @endif
 
 
 </ul>
