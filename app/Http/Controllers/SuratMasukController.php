@@ -137,6 +137,7 @@ class SuratMasukController extends Controller
         $suratMasuk = SuratMasuk::find($id);
         
         $suratMasuk->status = $request->status;
+        $suratMasuk->alasan = $request->alasan;
         $suratMasuk->save();
         return redirect()->route('surat_masuk.index',)->withSuccess('Update Surat Masuk Berhasil');
     }

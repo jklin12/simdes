@@ -9,7 +9,7 @@ class SuratMasuk extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_surat';
-    protected $fillable = ['nomor_surat', 'jenis_surat','dari_surat', 'kepada_surat','judul_surat','file_surat','tgl_surat','file_tanggapan','status'];
+    protected $fillable = ['nomor_surat', 'jenis_surat','dari_surat', 'kepada_surat','judul_surat','file_surat','tgl_surat','file_tanggapan','status','alasan'];
 
     public function getFieldAttribute()
     {

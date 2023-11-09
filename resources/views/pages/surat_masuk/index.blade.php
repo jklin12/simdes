@@ -44,8 +44,8 @@
                         <th>Tujuan Surat</th>
                         <th>Judul Surat</th>
                         <th>Status</th>
-                        <th>File Surat</th>
-                        <th>File Tanggapan</th>
+                        <th>File Surat Masuk</th>
+                        <th>File Surat Balasan</th>
                         <th colspan="2" class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -59,7 +59,14 @@
                         <td>{{ $surat->dari_surat}}</td>
                         <td>{{ $surat->kepada_surat}}</td>
                         <td>{{ $surat->judul_surat}}</td>
-                        <td>{{ $surat->status}}</td>
+                        <td>
+                            @if($surat->status == 'Ditolak')
+                            <a href="#" class="alasan-btn" data-toggle="modal" data-target="#alasan-modal" data-alasan="{{ $surat->alasan }}" >{{ $surat->status}}</a>
+                            @else
+                            {{ $surat->status}}
+                            @endif
+
+                        </td>
                         <td class="text-center"><a href="/simdes/public/{{ $surat->file_surat }}" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-download"></i></a></td>
 
                         <td class="text-center">
@@ -92,7 +99,7 @@
                                 <span class="text">Tanggapi Surat</span>
                             </a>
                             @elseif($surat->status == 'Riview Tanggapan')
-                            <a href="#" class="btn btn-success btn-icon-split riview-btn" data-toggle="modal" data-target="#riview-modal" data-route="{{ route('surat_masuk.riview',$surat->id_surat )}}" data-name="{{ $surat->judul_surat}}" data-status="Ditangapi">
+                            <a href="#" class="btn btn-success btn-icon-split riview-btn" data-toggle="modal" data-target="#riview-modal" data-route="{{ route('surat_masuk.riview',$surat->id_surat )}}" data-name="{{ $surat->judul_surat}}" data-status="Ditanggapi">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-check"></i>
                                 </span>
@@ -119,6 +126,20 @@
 </div>
 
 
+<div class="modal fade" id="alasan-modal" tabindex="-1" role="dialog" aria-labelledby="tanggapiModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Alasan Ditolak</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="alasan-body"></div>
+        
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="tanggapan-modal" tabindex="-1" role="dialog" aria-labelledby="tanggapiModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -161,6 +182,10 @@
             <form action="" method="POST" id="riview-form">
                 @csrf
                 <input type="hidden" name="status" value="" id="update-riview-status">
+                <div class="form-group mx-4" id="input-alasan-tolak">
+                    <label for="exampleFormControlTextarea1">Alasan Ditolak : </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="alasan" rows="3"></textarea>
+                </div>
                 @method('PUT')
             </form>
             <div class="modal-footer">
@@ -227,6 +252,11 @@
             $('#menanggapi-form').attr('action', $(this).data('route'))
         })
         $('.riview-btn').click(function() {
+            if ($(this).data('status') == 'Ditolak') {
+                $('#input-alasan-tolak').css('display','block')
+            }else{
+                $('#input-alasan-tolak').css('display','none')
+            }
             $('#riview-name').html($(this).data('name'))
             $('#riview-status').html($(this).data('status'))
             $('#update-riview-status').val($(this).data('status'))
@@ -235,6 +265,9 @@
 
         $('.tanggapan-btn').click(function() {
             $('#tanggapan-form').attr('action', $(this).data('route'))
+        })
+        $('.alasan-btn').click(function() {
+            $('#alasan-body').html( $(this).data('alasan'))
         })
     })
 </script>

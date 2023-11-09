@@ -27,7 +27,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-surat" aria-expanded="true" aria-controls="collapse-surat">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Data Surat Keluar</span>
+            <span>Data Surat Pengantar</span>
         </a>
         <div id="collapse-surat" class="collapse" aria-labelledby="headingsurat" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
